@@ -32,7 +32,7 @@ impl<'a, R: Read + Seek> MessageView<'a, R> {
         serde_rosmsg::from_slice(&bytes[self.start_index..self.end_index]).map_err(|e| e.into())
     }
     
-    pub fn raw_bytes<'de, T>(&self) -> Result<&[u8], Error>{
+    pub fn raw_bytes(&self) -> Result<&[u8], Error>{
         let Some(bytes) = self.bag.chunk_bytes.get(&self.chunk_loc) else {
             return Err(Error::new(ErrorKind::InvalidBag(Cow::Borrowed(
                 "Supplied chunk loc for msg view doesn't exist",
