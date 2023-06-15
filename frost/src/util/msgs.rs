@@ -38,7 +38,7 @@ impl<'a, R: Read + Seek> MessageView<'a, R> {
                 "Supplied chunk loc for msg view doesn't exist",
             ))))
         };
-        &bytes[self.start_index..self.end_index]
+        Ok(&bytes[self.start_index..self.end_index])
     }
 
 }
